@@ -15,11 +15,12 @@ const Url = () => {
     setSummary("");
 
     try {
-      const res = await fetch("https://aisummary-0-0-1-release.onrender.com/summarize", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url }),
-      });
+     
+        const res = await fetch("https://aisummary-0-0-1-release.onrender.com/summarize", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url, languages: ["en"] })
+        });
 
       const data = await res.json();
       if (data.summary) setSummary(data.summary);
