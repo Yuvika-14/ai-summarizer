@@ -15,7 +15,7 @@ const Url = () => {
     setSummary("");
 
     try {
-      const res = await fetch("https://summary-0-0-1-release.onrender.com/summarize", {
+      const res = await fetch("https://aisummary-0-0-1-release.onrender.com/summarize", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url }),
