@@ -16,7 +16,7 @@ const Url = () => {
 
     try {
      
-        const res = await fetch("https://aisummary-0-0-1-release.onrender.com/summarize", {
+        const res = await fetch("https://flasksummary-0-0-1-release.onrender.com/summarize", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ url, languages: ["en"] })
