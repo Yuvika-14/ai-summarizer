@@ -13,26 +13,32 @@ const Url = () => {
     setLoading(true);
     setError("");
     setSummary("");
-
+  
     try {
-     
-        const res = await fetch("https://flasksummary-0-0-1-release.onrender.com/summarize", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ url, languages: ["en"] })
-        });
-
+      const res = await fetch("https://flasksummary-0-0-1-release.onrender.com/summarize", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, languages: ["en"] })
+      });
+  
+      if (!res.ok) {
+        const errorText = await res.text();
+        console.error("Server responded with:", res.status, errorText);
+        setError(`Server error: ${res.status}`);
+        return;
+      }
+  
       const data = await res.json();
       if (data.summary) setSummary(data.summary);
       else setError("Could not generate summary.");
     } catch (err) {
-      console.error(err);
+      console.error("Fetch failed:", err);
       setError("Backend error");
     } finally {
       setLoading(false);
     }
   };
-
+  
   return (
     
     <div className="p-4 flex flex-col items-center gap-2 ">
